@@ -10,6 +10,8 @@ object RetrofitClient {
     }
 
     private fun createRetrofit(): Retrofit {
-        return Retrofit.Builder().baseUrl("https://json2kt.com/").build()
+        return Retrofit.Builder()
+                .baseUrl("")
+                .build()
     }
 }

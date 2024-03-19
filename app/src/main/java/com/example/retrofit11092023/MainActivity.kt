@@ -18,10 +18,5 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val retrofit1 = RetrofitClient.retrofit
-        val retrofit2 = RetrofitClient.retrofit
-
-        Log.d("pphat", retrofit1.toString())
-        Log.d("pphat", retrofit2.toString())
     }
 }
