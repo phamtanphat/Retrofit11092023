@@ -6,8 +6,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import org.json.JSONArray
-import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,5 +20,20 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val apiService = RetrofitClient.getApiService()
+        apiService.getListToDo().enqueue(object : Callback<ResponseApi<List<Todo>>> {
+            override fun onResponse(
+                call: Call<ResponseApi<List<Todo>>>,
+                response: Response<ResponseApi<List<Todo>>>
+            ) {
+                response.body()?.data?.forEach { Log.d("pphat success", it.toString()) }
+
+            }
+
+            override fun onFailure(call: Call<ResponseApi<List<Todo>>>, t: Throwable) {
+                Log.d("pphat error", t.message.toString())
+            }
+        })
     }
 }

@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-    private val retrofit: Retrofit by lazy { createRetrofit() }
+    private val retrofit: Retrofit = createRetrofit()
     private val apiService = retrofit.create(ApiService::class.java)
 
     fun getRetrofit() = retrofit
@@ -21,7 +21,7 @@ object RetrofitClient {
             .writeTimeout(30, TimeUnit.SECONDS)
             .build()
 
-        val gson = GsonBuilder().create()
+        val gson = GsonBuilder().setLenient().create()
 
         return Retrofit.Builder()
             .baseUrl("http://androidapp.infinityfreeapp.com/")

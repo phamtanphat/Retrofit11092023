@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface ApiService {
 
     @GET("Api11092024/list_todo.php")
-    fun getListToDo() : Call<ResponseApi<Todo>>
+    fun getListToDo(): Call<ResponseApi<List<Todo>>>
 }
